@@ -5,53 +5,28 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+        }
+
         #map {
-            height: 600px;
-            width: 75%;
-            float: left;
+            height: 100%;
+            width: 100%;
         }
 
         .custom-icon {
             font-size: 16px;
         }
-
-        #legend {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: white;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            width: auto;
-        }
-
-        #legend h4 {
-            margin-top: 0;
-        }
-
-        #legend div {
-            display: flex;
-            align-items: center;
-        }
-
-        #legend span {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-        }
-
     </style>
 </head>
 <body>
-    <h2>Interactive Map of Vienna</h2>
     <div id="map"></div>
-    <div id="legend">
-        <h4>Legend:</h4>
-        <div><span style="background-color: red;"></span> Museums</div>
-        <div><span style="background-color: green;"></span> Palaces & Churches</div>
-        <div><span style="background-color: black;"></span> Market</div>
-    </div>
 
     <script>
         var map = L.map('map').setView([48.2082, 16.3738], 13);
@@ -115,19 +90,6 @@
             dashArray: '5, 5'
         }).addTo(map).bindPopup("Spittelberg Area");
 
-        // Measure distance between two markers (example: between St. Stephen's Cathedral and Kunsthistorisches Museum)
-        var marker1 = L.marker([48.2086, 16.3731]).addTo(map);
-        var marker2 = L.marker([48.2046, 16.3616]).addTo(map);
-
-        var distance = marker1.getLatLng().distanceTo(marker2.getLatLng()).toFixed(2);  // Distance in meters
-        L.polyline([marker1.getLatLng(), marker2.getLatLng()], {color: 'blue'}).addTo(map);
-        
-        var distanceLabel = "Distance: " + distance + " meters";
-        var distancePopup = L.popup()
-            .setLatLng([48.206, 16.367])
-            .setContent(distanceLabel)
-            .openOn(map);
-        
     </script>
 </body>
 </html>
